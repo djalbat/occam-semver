@@ -13,7 +13,7 @@
 
 ## Introduction
 
-Occam's package versioning is effectively taken out of the user's control with packaged versions being enforced when packages are published. This package contains that functionality.
+Occam's package versioning is effectively taken out of the user's control with versions being enforced when packages are published. This package contains that functionality.
 
 ## Installation
 
