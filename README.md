@@ -37,11 +37,16 @@ Custom grammars and contexts are compared separately. The maximum of the two ver
 
 ```
 import { Version } from "occam-file-system";
-import { updateVersion, compareContexts, compareCustomGrammars, versionNumberChanges } from "occam-semver";
+import { updateVersion, 
+         compareContexts, 
+         versionNumberChanges, 
+         compareCustomGrammars } from "occam-semver";
 
-const { PATCH_VERSION_NJMBER_CHANGE. MINOR_VERSION_NUMBER_CHANGE, MAJOR_VERSION_NUMBER_CHANGE } = versionNumberChanges;
+const { PATCH_VERSION_NJMBER_CHANGE. 
+        MINOR_VERSION_NUMBER_CHANGE, 
+        MAJOR_VERSION_NUMBER_CHANGE } = versionNumberChanges;
 
-const contetx = ... ,
+const context = ... ,
       previousContext = ''' ,
       contextVersionNumberChange = compareContexts(previousContext, context);
 
@@ -49,7 +54,7 @@ const customGrammar = ... ,
       previousCustomGrammar = ... ,
       customGrammarVersionNumberChange = compareCustomGrammars(previousCutomGrammar, customGrammar),
       
-const versionNumberChange = math.max(contxtVersionNumberChange, customGrammarVersionNumberChage);
+const versionNumberChange = Math.max(contxtVersionNumberChange, customGrammarVersionNumberChage);
 
 let version;
 
@@ -62,11 +67,11 @@ version = Version.fromVersion(version); ///
 updateVersion(version, versionNumberChange);
 ```
 
-The `updateVersion` function can be used to apply the version number change.
+The `updateVersion()` function can be used to apply the version number change. Note that the `Version` class' `fromVersion()` static factory method is called to duplicate the previous version before making the change.
  
 ## Example
 
-The example allows to JSON objects to be input in order to demonstrate the underlying JSON diffing.
+The example demonstrates the underlying JSON diffing.
 
 ## Building
 
