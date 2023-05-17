@@ -38,23 +38,23 @@ Custom grammars and contexts are compared separately. The maximum of the two ver
 ```
 import { Version } from "occam-file-system";
 import { updateVersion, 
-         compareContexts, 
+         compareContextJSON, 
          versionNumberChanges, 
-         compareCustomGrammars } from "occam-semver";
+         compareCustomGrammarJSON } from "occam-semver";
 
 const { PATCH_VERSION_NJMBER_CHANGE. 
         MINOR_VERSION_NUMBER_CHANGE, 
         MAJOR_VERSION_NUMBER_CHANGE } = versionNumberChanges;
 
-const context = ... ,
-      previousContext = ''' ,
-      contextVersionNumberChange = compareContexts(previousContext, context);
+const contextJSON = ... ,
+      previousContextJSON = ''' ,
+      contextJSONVersionNumberChange = compareContextJSON(previousContextJSON, contextJSON);
 
-const customGrammar = ... ,
-      previousCustomGrammar = ... ,
-      customGrammarVersionNumberChange = compareCustomGrammars(previousCutomGrammar, customGrammar),
+const customGrammarJSON = ... ,
+      previousCustomGrammarJSON = ... ,
+      customGrammarVJSONersionNumberChange = compareCustomGrammarJSON(previousCustomGrammarJSON, customGrammarJSON),
       
-const versionNumberChange = Math.max(contxtVersionNumberChange, customGrammarVersionNumberChage);
+const versionNumberChange = Math.max(contxtJSONVersionNumberChange, customGrammarVJSONersionNumberChange);
 
 let version;
 
