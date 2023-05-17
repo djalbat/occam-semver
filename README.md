@@ -37,14 +37,7 @@ Custom grammars and contexts are compared separately. The maximum of the two ver
 
 ```
 import { Version } from "occam-file-system";
-import { updateVersion, 
-         compareContextJSON, 
-         versionNumberChanges, 
-         compareCustomGrammarJSON } from "occam-semver";
-
-const { PATCH_VERSION_NJMBER_CHANGE. 
-        MINOR_VERSION_NUMBER_CHANGE, 
-        MAJOR_VERSION_NUMBER_CHANGE } = versionNumberChanges;
+import { updateVersion, compareContextJSON, compareCustomGrammarJSON } from "occam-semver";
 
 const contextJSON = ... ,
       previousContextJSON = ''' ,

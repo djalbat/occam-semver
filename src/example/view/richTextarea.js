@@ -2,13 +2,14 @@
 
 import withStyle from "easy-with-style";  ///
 
-import { Textarea } from "easy";
+import { RichTextarea } from "easy-richtextarea";
 
-export default withStyle(Textarea)`
+export default withStyle(RichTextarea)`
 
+  width: 36rem;
+  height: 48rem;
   border: 1px solid darkgrey;
-  height: 12rem;
-  resize: vertical;
+  resize: horizontal;
   padding: 0.25rem;
   font-size: 1.2rem;
   line-height: 1.5rem;

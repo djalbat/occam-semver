@@ -10,6 +10,7 @@
     "url": "https://github.com/djalbat/occam-semver"
   },
   "dependencies": {
+    "easy-richtextarea": "^4.0.59",
     "necessary": "^11.0.40"
   },
   "devDependencies": {

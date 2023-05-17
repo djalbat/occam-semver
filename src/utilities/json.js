@@ -9,7 +9,7 @@ import { EQUAL_TO_JSON_COMPARISON, NOT_EQUAL_TO_JSON_COMPARISON, STRICTLY_LESS_T
 const { first } = arrayUtilities;
 
 export function compareJSON(jsonA, jsonB) {
-  let jsonComparison = MAJOR_VERSION_NUMBER_CHANGE;
+  let jsonComparison = NOT_EQUAL_TO_JSON_COMPARISON;
 
   const jsonAType = typeOf(jsonA),
         jsonBType = typeOf(jsonB);
@@ -64,7 +64,7 @@ function compareArrays(arrayA, arrayB) {
         jsonComparison = STRICTLY_LESS_THAN_JSON_COMPARISON;
       }
     } else {
-      let firstJsonComparison = NOT_EQUAL_TO_JSON_COMPARISON;
+      let firstJSONComparison = NOT_EQUAL_TO_JSON_COMPARISON;
 
       const elementsA = arrayA, ///
             elementsB = arrayB, ///
@@ -78,9 +78,9 @@ function compareArrays(arrayA, arrayB) {
           const jsonA = elementA, ///
                 jsonB = elementB; ///
 
-          firstJsonComparison = compareJSON(jsonA, jsonB);
+          firstJSONComparison = compareJSON(jsonA, jsonB);
 
-          if (firstJsonComparison === EQUAL_TO_JSON_COMPARISON) {
+          if (firstJSONComparison === EQUAL_TO_JSON_COMPARISON) {
             foundElementB = elementB; ///
 
             return true;
@@ -93,9 +93,9 @@ function compareArrays(arrayA, arrayB) {
           const jsonA = elementA, ///
                 jsonB = elementB; ///
 
-          firstJsonComparison = compareJSON(jsonA, jsonB);
+          firstJSONComparison = compareJSON(jsonA, jsonB);
 
-          if (firstJsonComparison === STRICTLY_LESS_THAN_JSON_COMPARISON) {
+          if (firstJSONComparison === STRICTLY_LESS_THAN_JSON_COMPARISON) {
             foundElementB = elementB; ///
 
             return true;
@@ -103,28 +103,20 @@ function compareArrays(arrayA, arrayB) {
         });
       }
 
-      if (firstJsonComparison === NOT_EQUAL_TO_JSON_COMPARISON) {
+      if (firstJSONComparison === NOT_EQUAL_TO_JSON_COMPARISON) {
         jsonComparison = NOT_EQUAL_TO_JSON_COMPARISON;
       } else {
         const elementB = foundElementB; ///
 
-        arrayB = deleteElement(arrayB, elementA); ///
+        arrayA = deleteElement(arrayA, elementA); ///
 
         arrayB = deleteElement(arrayB, elementB); ///
 
-        const jsonA = arrayB,  ///
+        const jsonA = arrayA,  ///
               jsonB = arrayB,  ///
               remainingJSONComparison = compareJSON(jsonA, jsonB);
 
-        if (remainingJSONComparison === NOT_EQUAL_TO_JSON_COMPARISON) {
-          jsonComparison = NOT_EQUAL_TO_JSON_COMPARISON;
-        } else {
-          if ((firstJsonComparison === STRICTLY_LESS_THAN_JSON_COMPARISON) || (remainingJSONComparison === STRICTLY_LESS_THAN_JSON_COMPARISON)) {
-            jsonComparison = STRICTLY_LESS_THAN_JSON_COMPARISON;
-          } else {
-            jsonComparison = NOT_EQUAL_TO_JSON_COMPARISON;
-          }
-        }
+        jsonComparison = Math.max(firstJSONComparison, remainingJSONComparison);
       }
     }
   } else {
@@ -150,7 +142,7 @@ function compareObjects(objectA, objectB) {
         jsonComparison = STRICTLY_LESS_THAN_JSON_COMPARISON;
       }
     } else {
-      let firstJsonComparison = NOT_EQUAL_TO_JSON_COMPARISON;
+      let firstJSONComparison = NOT_EQUAL_TO_JSON_COMPARISON;
 
       const firstKeyA = first(keysA),
             keyA = firstKeyA; ///
@@ -162,13 +154,13 @@ function compareObjects(objectA, objectB) {
                 jsonA = valueA, ///
                 jsonB = valueB; ///
 
-          firstJsonComparison = compareJSON(jsonA, jsonB);
+          firstJSONComparison = compareJSON(jsonA, jsonB);
 
           return true;
         }
       });
 
-      if (firstJsonComparison === NOT_EQUAL_TO_JSON_COMPARISON) {
+      if (firstJSONComparison === NOT_EQUAL_TO_JSON_COMPARISON) {
         jsonComparison = NOT_EQUAL_TO_JSON_COMPARISON;
       } else {
         const keyB = keyA;  ///
@@ -181,15 +173,7 @@ function compareObjects(objectA, objectB) {
               jsonB = objectB,  ///
               remainingJSONComparison = compareJSON(jsonA, jsonB);
 
-        if (remainingJSONComparison === NOT_EQUAL_TO_JSON_COMPARISON) {
-          jsonComparison = NOT_EQUAL_TO_JSON_COMPARISON;
-        } else {
-          if ((firstJsonComparison === STRICTLY_LESS_THAN_JSON_COMPARISON) || (remainingJSONComparison === STRICTLY_LESS_THAN_JSON_COMPARISON)) {
-            jsonComparison = STRICTLY_LESS_THAN_JSON_COMPARISON;
-          } else {
-            jsonComparison = NOT_EQUAL_TO_JSON_COMPARISON;
-          }
-        }
+        jsonComparison = Math.max(firstJSONComparison, remainingJSONComparison);
       }
     }
   } else {
