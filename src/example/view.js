@@ -3,25 +3,27 @@
 import withStyle from "easy-with-style";  ///
 
 import { Element } from "easy";
-import { compareContextJSON } from "../index";  ///
+import { compareBNF } from "../utilities/bnf";
 
-import ContextJSONTextarea from "./view/richTextarea/json/context";
-import PreviousContextJSONTextarea from "./view/richTextarea/json/previousContext";
+import CustomGrammarBNFTextarea from "./view/richTextarea/bnf/customGrammar";
+import PreviousCustomGrammarBNFTextarea from "./view/richTextarea/bnf/previousCustomGrammar";
 
 class View extends Element {
   changeHandler = (event, element) => {
-    const contextJSON = this.getContextJSON(),
-          previousContextJSON = this.getPreviousContextJSON(),
-          jsonComparison = compareContextJSON(previousContextJSON, contextJSON);
+    const customGrammarBNF = this.getCustomGrammarBNF(),
+          previousCustomGrammarBNF = this.getPreviousCustomGrammarBNF(),
+          bnfA = previousCustomGrammarBNF,  ///
+          bnfB = customGrammarBNF,  ///
+          bnfComparison = compareBNF(bnfA, bnfB);
 
-    console.log(jsonComparison);
+    console.log(bnfComparison);
   }
 
   childElements() {
     return ([
 
-      <PreviousContextJSONTextarea onChange={this.changeHandler} active />,
-      <ContextJSONTextarea onChange={this.changeHandler} active />
+      <PreviousCustomGrammarBNFTextarea onChange={this.changeHandler} active />,
+      <CustomGrammarBNFTextarea onChange={this.changeHandler} active />
 
     ]);
   }
@@ -29,24 +31,24 @@ class View extends Element {
   initialise() {
     this.assignContext();
 
-    const { initialContextJSON, initialPreviousContextJSON } = this.constructor,
-          contextJSON = initialContextJSON, ///
-          previousContextJSON = initialPreviousContextJSON;
+    const { initialCustomGrammarBNF, initialPreviousCustomGrammarBNF } = this.constructor,
+          customGrammarBNF = initialCustomGrammarBNF, ///
+          previousCustomGrammarBNF = initialPreviousCustomGrammarBNF;
 
-    this.setContextJSON(contextJSON);
+    this.setCustomGrammarBNF(customGrammarBNF);
 
-    this.setPreviousContextJSON(previousContextJSON);
+    this.setPreviousCustomGrammarBNF(previousCustomGrammarBNF);
 
-    this.activateContextJSONRichTextarea();
+    this.activateCustomGrammarBNFRichTextarea();
 
-    this.activatePreviousContextJSONRichTextarea();
+    this.activatePreviousCustomGrammarBNFRichTextarea();
 
     this.changeHandler();
   }
 
-  static initialContextJSON = {};
+  static initialCustomGrammarBNF = "";
 
-  static initialPreviousContextJSON = {};
+  static initialPreviousCustomGrammarBNF = "";
 
   static tagName = "div";
 

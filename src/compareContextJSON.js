@@ -1,6 +1,6 @@
 "use strict";
 
-import { compareJSON } from "./utilities/json";
+import { compareJSON, comparePrimitives } from "./utilities/json";
 import { PATCH_VERSION_NUMBER_CHANGE, MINOR_VERSION_NUMBER_CHANGE, MAJOR_VERSION_NUMBER_CHANGE } from "./versionNumberChanges";
 import { EQUAL_TO_JSON_COMPARISON, NOT_EQUAL_TO_JSON_COMPARISON, STRICTLY_LESS_THAN_JSON_COMPARISON } from "./jsonComparisons";
 
@@ -9,7 +9,7 @@ export default function compareContextJSON(previousContextJSON, contextJSON) {
 
   const jsonA = previousContextJSON, ///
         jsonB = contextJSON, ///
-        jsonComparison = compareJSON(jsonA, jsonB);
+        jsonComparison = compareJSON(jsonA, jsonB, comparePrimitives);
 
   switch (jsonComparison) {
     case EQUAL_TO_JSON_COMPARISON:

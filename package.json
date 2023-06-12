@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "easy-richtextarea": "^4.0.59",
-    "necessary": "^11.0.40"
+    "necessary": "^11.0.40",
+    "occam-lexers": "^17.0.9",
+    "occam-parsers": "^17.0.13"
   },
   "devDependencies": {
     "@swc/core": "^1.2.50",

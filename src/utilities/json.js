@@ -3,12 +3,14 @@
 const { arrayUtilities } = require("necessary");
 
 import { typeOf } from "../utilities/type";
+import { deleteKey } from "../utilities/object";
+import { deleteElement } from "../utilities/array";
 import { ARRAY_JSON_TYPE, OBJECT_JSON_TYPE, PRIMITIVE_JSON_TYPE } from "../jsonTypes";
 import { EQUAL_TO_JSON_COMPARISON, NOT_EQUAL_TO_JSON_COMPARISON, STRICTLY_LESS_THAN_JSON_COMPARISON } from "../jsonComparisons";
 
 const { first } = arrayUtilities;
 
-export function compareJSON(jsonA, jsonB) {
+export function compareJSON(jsonA, jsonB, comparePrimitives) {
   let jsonComparison = NOT_EQUAL_TO_JSON_COMPARISON;
 
   const jsonAType = typeOf(jsonA),
@@ -50,7 +52,7 @@ export function compareJSON(jsonA, jsonB) {
   return jsonComparison;
 }
 
-function compareArrays(arrayA, arrayB) {
+export function compareArrays(arrayA, arrayB) {
   let jsonComparison;
 
   const arrayALength = arrayA.length,
@@ -126,7 +128,7 @@ function compareArrays(arrayA, arrayB) {
   return jsonComparison;
 }
 
-function compareObjects(objectA, objectB) {
+export function compareObjects(objectA, objectB) {
   let jsonComparison;
 
   const keysA = Object.keys(objectA),
@@ -183,7 +185,7 @@ function compareObjects(objectA, objectB) {
   return jsonComparison;
 }
 
-function comparePrimitives(primitiveA, primitiveB) {
+export function comparePrimitives(primitiveA, primitiveB) {
   let jsonComparison;
 
   if (primitiveA === primitiveB) {
@@ -193,36 +195,4 @@ function comparePrimitives(primitiveA, primitiveB) {
   }
 
   return jsonComparison;
-}
-
-function deleteElement(array, element) {
-  const deletedElement = element; ///
-
-  array = array.reduce((array, element) => {  ///
-    if (element !== deletedElement) {
-      array.push(element);
-    }
-
-    return array;
-  }, []);
-
-  return array;
-}
-
-function deleteKey(object, key) {
-  const deletedKey = key, ///
-        keys = Object.keys(object),
-        values = Object.values(object);
-
-  object = keys.reduce((object, key, index) => {  ///
-    if (key !== deletedKey) {
-      const value = values[index];
-
-      object[key] = value;
-    }
-
-    return object;
-  }, {});
-
-  return object;
 }
