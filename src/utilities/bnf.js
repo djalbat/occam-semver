@@ -24,8 +24,8 @@ export function compareBNF(bnfA, bnfB) {
     const matches = nodeA.match(nodeB);
 
     jsonComparison = matches ?
-                      EQUAL_TO_JSON_COMPARISON :
-                        NOT_EQUAL_TO_JSON_COMPARISON;
+                       EQUAL_TO_JSON_COMPARISON :
+                         NOT_EQUAL_TO_JSON_COMPARISON;
   }
 
   return jsonComparison;
