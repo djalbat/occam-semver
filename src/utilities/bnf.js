@@ -32,9 +32,14 @@ export function compareBNF(bnfA, bnfB) {
 }
 
 function nodeFromBNF(bnf) {
-  const content = bnf,
-        tokens = bnfLexer.tokenise(content),
-        node = bnfParser.parse(tokens);
+  let node = null;
+
+  if (bnf !== null) {
+    const content = bnf,
+          tokens = bnfLexer.tokenise(content);
+
+    node = bnfParser.parse(tokens);
+  }
 
   return node;
 }
