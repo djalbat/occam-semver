@@ -24,7 +24,7 @@ export function compareJSON(jsonA, jsonB, comparePrimitives) {
         const arrayA = jsonA, ///
               arrayB = jsonB; ///
 
-        jsonComparison = compareArrays(arrayA, arrayB);
+        jsonComparison = compareArrays(arrayA, arrayB, comparePrimitives);
 
         break;
       }
@@ -33,7 +33,7 @@ export function compareJSON(jsonA, jsonB, comparePrimitives) {
         const objectA = jsonA, ///
               objectB = jsonB; ///
 
-        jsonComparison = compareObjects(objectA, objectB);
+        jsonComparison = compareObjects(objectA, objectB, comparePrimitives);
 
         break;
       }
@@ -52,7 +52,7 @@ export function compareJSON(jsonA, jsonB, comparePrimitives) {
   return jsonComparison;
 }
 
-export function compareArrays(arrayA, arrayB) {
+export function compareArrays(arrayA, arrayB, comparePrimitives) {
   let jsonComparison;
 
   const arrayALength = arrayA.length,
@@ -80,7 +80,7 @@ export function compareArrays(arrayA, arrayB) {
           const jsonA = elementA, ///
                 jsonB = elementB; ///
 
-          firstJSONComparison = compareJSON(jsonA, jsonB);
+          firstJSONComparison = compareJSON(jsonA, jsonB, comparePrimitives);
 
           if (firstJSONComparison === EQUAL_TO_JSON_COMPARISON) {
             foundElementB = elementB; ///
@@ -95,7 +95,7 @@ export function compareArrays(arrayA, arrayB) {
           const jsonA = elementA, ///
                 jsonB = elementB; ///
 
-          firstJSONComparison = compareJSON(jsonA, jsonB);
+          firstJSONComparison = compareJSON(jsonA, jsonB, comparePrimitives);
 
           if (firstJSONComparison === STRICTLY_LESS_THAN_JSON_COMPARISON) {
             foundElementB = elementB; ///
@@ -116,7 +116,7 @@ export function compareArrays(arrayA, arrayB) {
 
         const jsonA = arrayA,  ///
               jsonB = arrayB,  ///
-              remainingJSONComparison = compareJSON(jsonA, jsonB);
+              remainingJSONComparison = compareJSON(jsonA, jsonB, comparePrimitives);
 
         jsonComparison = Math.max(firstJSONComparison, remainingJSONComparison);
       }
@@ -128,7 +128,7 @@ export function compareArrays(arrayA, arrayB) {
   return jsonComparison;
 }
 
-export function compareObjects(objectA, objectB) {
+export function compareObjects(objectA, objectB, comparePrimitives) {
   let jsonComparison;
 
   const keysA = Object.keys(objectA),
@@ -156,7 +156,7 @@ export function compareObjects(objectA, objectB) {
                 jsonA = valueA, ///
                 jsonB = valueB; ///
 
-          firstJSONComparison = compareJSON(jsonA, jsonB);
+          firstJSONComparison = compareJSON(jsonA, jsonB, comparePrimitives);
 
           return true;
         }
@@ -173,7 +173,7 @@ export function compareObjects(objectA, objectB) {
 
         const jsonA = objectA,  ///
               jsonB = objectB,  ///
-              remainingJSONComparison = compareJSON(jsonA, jsonB);
+              remainingJSONComparison = compareJSON(jsonA, jsonB, comparePrimitives);
 
         jsonComparison = Math.max(firstJSONComparison, remainingJSONComparison);
       }
