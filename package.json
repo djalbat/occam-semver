@@ -1,7 +1,7 @@
 {
   "name": "occam-semver",
   "author": "James Smith",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "license": "MIT, Anti-996",
   "homepage": "https://github.com/djalbat/occam-semver",
   "description": "Occam's semantic versioning.",
@@ -18,7 +18,7 @@
   "devDependencies": {
     "@swc/core": "^1.2.50",
     "easy": "^15.1.1",
-    "easy-with-style": "^3.0.249",
+    "easy-with-style": "^3.0.251",
     "esbuild": "^0.9.6",
     "express": "^4.17.1",
     "juxtapose": "^4.0.60",
