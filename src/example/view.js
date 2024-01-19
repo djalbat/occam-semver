@@ -9,7 +9,7 @@ import CustomGrammarBNFTextarea from "./view/richTextarea/bnf/customGrammar";
 import PreviousCustomGrammarBNFTextarea from "./view/richTextarea/bnf/previousCustomGrammar";
 
 class View extends Element {
-  changeHandler = (event, element) => {
+  customChangeHandler = (event, element) => {
     const customGrammarBNF = this.getCustomGrammarBNF(),
           previousCustomGrammarBNF = this.getPreviousCustomGrammarBNF(),
           bnfA = previousCustomGrammarBNF,  ///
@@ -22,8 +22,8 @@ class View extends Element {
   childElements() {
     return ([
 
-      <PreviousCustomGrammarBNFTextarea onChange={this.changeHandler} active />,
-      <CustomGrammarBNFTextarea onChange={this.changeHandler} active />
+      <PreviousCustomGrammarBNFTextarea onCustomChange={this.customChangeHandler} active />,
+      <CustomGrammarBNFTextarea onCustomChange={this.customChangeHandler} active />
 
     ]);
   }
@@ -43,7 +43,7 @@ class View extends Element {
 
     this.activatePreviousCustomGrammarBNFRichTextarea();
 
-    this.changeHandler();
+    this.customChangeHandler(); ///
   }
 
   static initialCustomGrammarBNF = "";
