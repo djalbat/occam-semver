@@ -3,10 +3,12 @@
 import withStyle from "easy-with-style";  ///
 
 import { Element } from "easy";
-import { compareBNF } from "../utilities/bnf";
+import { bnfUtilities } from "../index";  ///
 
 import CustomGrammarBNFTextarea from "./view/richTextarea/bnf/customGrammar";
 import PreviousCustomGrammarBNFTextarea from "./view/richTextarea/bnf/previousCustomGrammar";
+
+const { compareBNF } = bnfUtilities;
 
 class View extends Element {
   customChangeHandler = (event, element) => {

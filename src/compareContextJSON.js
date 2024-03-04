@@ -12,20 +12,23 @@ export default function compareContextJSON(previousContextJSON, contextJSON) {
         jsonComparison = compareJSON(jsonA, jsonB, comparePrimitives);
 
   switch (jsonComparison) {
-    case EQUAL_TO_JSON_COMPARISON:
+    case EQUAL_TO_JSON_COMPARISON: {
       contextJSONVersionNumberChange = PATCH_VERSION_NUMBER_CHANGE;
 
       break;
+    }
 
-    case NOT_EQUAL_TO_JSON_COMPARISON:
+    case NOT_EQUAL_TO_JSON_COMPARISON: {
       contextJSONVersionNumberChange = MAJOR_VERSION_NUMBER_CHANGE;
 
       break;
+    }
 
-    case STRICTLY_LESS_THAN_JSON_COMPARISON:
+    case STRICTLY_LESS_THAN_JSON_COMPARISON: {
       contextJSONVersionNumberChange = MINOR_VERSION_NUMBER_CHANGE;
 
       break;
+    }
   }
 
   return contextJSONVersionNumberChange;

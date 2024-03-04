@@ -31,6 +31,10 @@ export function compareBNF(bnfA, bnfB) {
   return jsonComparison;
 }
 
+export default {
+  compareBNF
+};
+
 function nodeFromBNF(bnf) {
   let node = null;
 
