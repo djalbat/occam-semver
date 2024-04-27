@@ -15,7 +15,7 @@
     "occam-parsers": "^22.0.21"
   },
   "devDependencies": {
-    "@swc/core": "^1.2.50",
+    "@swc/core": "1.2.52",
     "easy": "^16.0.19",
     "easy-richtextarea": "^4.0.160",
     "easy-with-style": "^3.0.343",
